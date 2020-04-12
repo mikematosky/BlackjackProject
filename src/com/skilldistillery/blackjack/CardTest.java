@@ -12,15 +12,19 @@ public class CardTest {
 	}
 		
 		
-	public void testDeal(Dealer dealer, Player humanPlayer) {	
+	public void testDeal(Dealer dealer, Player player) {	
 		try {
-			humanPlayer.receiveACard(c);
-			humanPlayer.receiveACard(dealer.getDeck().dealCard());
+			player.receiveACard(dealer.dealtCard());
+			player.receiveACard(dealer.dealtCard());
 			//dealer.dealACard(humanPlayer.getPlayerHand());
 			
-//			for (Card card : humanPlayer.getPlayerHand()) {
-//				card.displayCard();
-//			}
+			for (Card card : player.getPlayerHand()) {
+				card.displayCard();
+				System.out.print(" ");
+			}
+			
+			System.out.println(player.getScore());
+			
 		}catch(Exception e) {
 			System.out.println("Fail");
 		}

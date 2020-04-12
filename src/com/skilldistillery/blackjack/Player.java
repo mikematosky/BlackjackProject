@@ -53,6 +53,10 @@ public class Player {
 			System.err.println("Player refuses to receive Card");
 		}
 	}
+	
+	public int getScore() {
+		return playerHand.getScore();
+	}
 
 	public void setPlayerHand(Hand playerHand) {
 		this.playerHand = playerHand;

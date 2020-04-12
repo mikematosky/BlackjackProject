@@ -21,7 +21,7 @@ public abstract class Dealer {
 		return deckCapacity;
 	}
 	
-	public Card dealACard() { //Every dealer deals a card
+	public Card dealtCard() { //Every dealer deals a card
 		try {
 			if(deck.checkDeckSize()== 0) {
 				deck = new Deck();

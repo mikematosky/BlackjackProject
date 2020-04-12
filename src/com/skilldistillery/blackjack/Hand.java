@@ -8,6 +8,7 @@ public class Hand {
 	private int score;
 
 	public Hand() {
+		hand= new ArrayList<>();
 	}	// Adds a card to the hand and updates the score
 	//
 	// I can OOP out an Abstract Class for different Hands, but the soft
