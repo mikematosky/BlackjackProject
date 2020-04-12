@@ -65,4 +65,9 @@ public class Card {
     return builder.toString();
   }
   
+  //this method is for how the card looks on the Table. I don't want to use toString.
+  public void displayCard() {
+	  System.out.print(rank.toString()+suit.toString());
+  }
+  
 }

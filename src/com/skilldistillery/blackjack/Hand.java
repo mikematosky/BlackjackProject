@@ -13,24 +13,28 @@ public class Hand {
 	// I can OOP out an Abstract Class for different Hands, but the soft
 	// Ace feature is the only distinction to this class for BlackJack
 	public void addToHand(Card c) {
-		
-		if(score <= 21) {
-			hand.add(c);
-			score= score+ c.getValue();
-			
-			
-			//Soft Aces
-			while(score > 21) {
-				for (Card card : hand) {
-					if(c.getRank() == Rank.ACE) {
-						score = score- 10;
-						break;
-					}
-				}				
+	
+		try {
+			if(score <= 21) {
+				hand.add(c);
+				score= score+ c.getValue();
+				
+				
+				//Soft Aces
+				while(score > 21) {
+					for (Card card : hand) {
+						if(c.getRank() == Rank.ACE) {
+							score = score- 10;
+							break;
+						}
+					}				
+				}
 			}
-		}
-		else {
-			System.err.println(" DEALER: You cannot add anymore cards to this hand");
+			else {
+				System.err.println(" DEALER: You cannot add anymore cards to this hand");
+			}
+		}catch(Exception e){
+			System.err.println("Could not Add Card");
 		}
 	}
 	
@@ -45,7 +49,7 @@ public class Hand {
 		
 	}
 	
-	//?
+	//? 
 	public ArrayList<Card> getHand(){
 		return hand;
 	}

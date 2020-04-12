@@ -21,14 +21,17 @@ public class Deck {
     return deck;
   }
   
+  
   public int checkDeckSize() {
     return cards.size();
   }
   
+  //A deck can be shuffled
   public void shuffle() {
     Collections.shuffle(cards);
   }
   
+  //A deck provides the card to be dealt
   public Card dealCard() {
     return cards.remove(0);
   }

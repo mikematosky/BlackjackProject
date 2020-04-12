@@ -16,14 +16,12 @@ public class BlackJackDealer extends Dealer{
 
 	public void playerWin() {
 		System.out.println(this.name+ " wins!");
-		deck.shuffle();
 	}
 	
-	public void dealCard(Hand hand) {
-		hand.addToHand(deck.dealCard());
+	public void initiateRound() {
+		
 	}
 	
-	
-	
+	//Abstract class has a deck, can dealACard(), Shuffle()
 
 }
