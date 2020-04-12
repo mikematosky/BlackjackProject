@@ -3,14 +3,32 @@ package com.skilldistillery.blackjack;
 public class Card {
   private Rank rank;
   private Suit suit;
+  private boolean isVisible;
   
   public Card(Rank rank, Suit suit) {
     this.rank = rank;
     this.suit = suit;
+    isVisible=false;
   }
   
   public int getValue() {
     return rank.getValue();
+  }
+  
+  public Rank getRank() {
+	  return this.rank;
+  }
+  
+  public Suit getSuit() {
+	  return this.suit;
+  }
+  
+  public boolean getIsVisible() {
+	  return isVisible;
+  }
+  
+  public void setIsVisible(boolean b) {
+	  this.isVisible= b;
   }
 
   @Override
