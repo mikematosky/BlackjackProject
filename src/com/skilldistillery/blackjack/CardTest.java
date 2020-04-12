@@ -2,14 +2,28 @@ package com.skilldistillery.blackjack;
 
 public class CardTest {
 	public static void main(String[] args) {
-		Deck deck= new Deck();
 		Dealer dealer= new BlackJackDealer();
 		Player humanPlayer= new Player("Mike");
-		dealer.dealACard(humanPlayer.getPlayerHand());
-		dealer.dealACard(humanPlayer.getPlayerHand());
+		CardTest ct= new CardTest();
 		
-		for (Card card : humanPlayer.getPlayerHand().getHand()) {
-			card.displayCard();
+		ct.testDeal(dealer, humanPlayer);
+		
+		
+	}
+		
+		
+	public void testDeal(Dealer dealer, Player humanPlayer) {	
+		try {
+			humanPlayer.receiveACard(c);
+			humanPlayer.receiveACard(dealer.getDeck().dealCard());
+			//dealer.dealACard(humanPlayer.getPlayerHand());
+			
+//			for (Card card : humanPlayer.getPlayerHand()) {
+//				card.displayCard();
+//			}
+		}catch(Exception e) {
+			System.out.println("Fail");
 		}
+		
 	}
 }

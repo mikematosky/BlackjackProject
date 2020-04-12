@@ -1,5 +1,7 @@
 package com.skilldistillery.blackjack;
 
+import java.util.ArrayList;
+
 public class Player {
 	private String name;
 	private int handsWon;
@@ -7,9 +9,11 @@ public class Player {
 	private Hand playerHand;
 	
 	public Player(String name) {
+		playerHand= new Hand();
 		this.name= name;
 		handsWon=0;
 		handsPlayed=0;
+		
 	}
 	
 	//Getters and Setters
@@ -38,8 +42,16 @@ public class Player {
 		this.handsPlayed = handsPlayed;
 	}
 
-	public Hand getPlayerHand() {
-		return playerHand;
+	public ArrayList<Card> getPlayerHand() {
+		return playerHand.getHand();
+	}
+	
+	public void receiveACard(Card c) {
+		try {
+			playerHand.addToHand(c);
+		}catch(Exception e) {
+			System.err.println("Player refuses to receive Card");
+		}
 	}
 
 	public void setPlayerHand(Hand playerHand) {

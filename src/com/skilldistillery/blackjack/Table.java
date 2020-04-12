@@ -19,9 +19,9 @@ public class Table {
 	Dealer dealer= new BlackJackDealer();
 	Player human= new Player(getPlayerName());
 
-	public static void main(String[] args) {
-		
-	}
+//	public static void main(String[] args) {
+//		
+//	}
 	
 	
 	public String getPlayerName() {

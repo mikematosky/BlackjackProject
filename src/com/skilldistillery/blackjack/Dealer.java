@@ -1,6 +1,6 @@
 package com.skilldistillery.blackjack;
 
-import java.util.Collections;
+import java.util.ArrayList;
 
 public abstract class Dealer {
 	
@@ -21,14 +21,18 @@ public abstract class Dealer {
 		return deckCapacity;
 	}
 	
-	public void dealACard(Hand hand) { //Every dealer deals a card
-		
-		if(deck.checkDeckSize()== 0) {
-			deck = new Deck();
-			deck.shuffle();
-			dealACard(hand); //loops back in
-		}else {
-			hand.addToHand(deck.dealCard());						
+	public Card dealACard() { //Every dealer deals a card
+		try {
+			if(deck.checkDeckSize()== 0) {
+				deck = new Deck();
+				deck.shuffle();
+				return deck.dealCard();
+			}else {
+				return deck.dealCard();						
+			}
+		}catch(Exception e) {
+			System.err.println("Dealer could not deal a card");
+			return null;
 		}
 	}
 	
