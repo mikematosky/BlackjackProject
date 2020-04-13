@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class BlackJack {
 	
-	Scanner scan= new Scanner(System.in);
+	static Scanner scan= new Scanner(System.in);
 	
 	public static void main(String[] args) {
 		BlackJack bj= new BlackJack();
@@ -19,6 +19,8 @@ public class BlackJack {
 		while(!input.equalsIgnoreCase("quit")) {
 			input=""; //problem resetting this fella
 			playRound(table);
+			System.out.println("%%% Won="+table.getPlayer().getHandsWon()+"      %%% Played="+table.getPlayer().getHandsPlayed());
+			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			System.out.println("To play another round type any key. To quit type \"quit.\" ");
 			input=scan.next();
 		}
@@ -51,7 +53,7 @@ public class BlackJack {
 				intput=0;
 				System.out.println("1. Hit   2. Stand");
 				System.out.print("Selection: ");
-				intput= userInput1or2();
+				intput= userInput1or2();//
 								
 				//PLAYER CHOOSES TO HIT
 				if(intput == 1) {
@@ -76,9 +78,13 @@ public class BlackJack {
 				//PLAYER STANDS
 				if(intput== 2) {
 					//Dealer AutoHits to 17 while the player has a score less than or equal to 21
-					while (dealer.getHand().getScore() < dealer.DESIRABLE_SCORE && player.getHand().getScore() <= 21) {
+					while (dealer.getHand().getScore() < dealer.DESIRABLE_SCORE) {
 						dealer.receiveACard(dealer.dealtCard());
+						if(dealer.getHand().getScore()> 21) {
+							System.out.println("Dealer Busts! Player wins");
+						}
 					}
+					table.updateTableDisplay();
 					//This is the end of the Round
 					endRound= true;
 					endRound(table);
@@ -86,8 +92,6 @@ public class BlackJack {
 				}
 				
 				//ROUND IS OVER
-				//Always Show result after dealer has finished
-				table.updateTableDisplay();
 				
 			}//end while First Round Actions
 		}//end else
@@ -100,26 +104,28 @@ public class BlackJack {
 	 */
 	public int userInput1or2() {
 		//input validation 1 or 2
-		int input=0;
+		int intput=0;
+		String input="";
 		
 		while(true) {
 			try {
-				input= scan.nextInt();
+				input= scan.next();
+				intput= Integer.parseInt(input);
 			}
 			catch(Exception e) {
 				System.err.println("Must be either 1 or 2");
-				input= scan.nextInt();
+				input="";
 			}
 			
-			if( input != 1 && input != 2) {
+			if( intput != 1 && intput != 2) {
 				System.err.println("Must be either 1 or 2");
-				input= scan.nextInt();
+				input= "";
 			}
 			else {
 				break;
 			}		
 		}//end input validation
-		return input;
+		return intput;
 		
 	}
 	

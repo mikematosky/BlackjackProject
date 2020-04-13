@@ -40,7 +40,8 @@ public class BlackJackDealer extends Dealer{
 	 *Checking for a winner in BlackJack
 	 */
 	public boolean checkForWinner(Hand hand1, Hand hand2) {
-		if(hand1.getScore() < hand2.getScore() && hand2.getScore() <= 21) {
+		//Player hand is bigger than dealer and less than 21... Or the dealer went over
+		if((hand1.getScore() < hand2.getScore() && hand2.getScore() <= 21) || hand1.getScore() > 21) {
 			System.out.println("You WIN!");
 			return true;
 		}

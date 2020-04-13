@@ -21,7 +21,7 @@ public class Hand {
 				
 				
 				//Soft Aces
-				while(score > 21) {
+				if(score > 21) {
 					for (Card card : hand) {
 						if(card.getRank() == Rank.ACE) {
 							score = score- 10;
