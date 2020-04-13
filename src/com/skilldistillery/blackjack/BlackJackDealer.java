@@ -25,9 +25,6 @@ public class BlackJackDealer extends Dealer{
 		return hand;
 	}
 
-	public void playerWin() {
-		System.out.println(this.name+ " wins!");
-	}
 	
 	public void receiveACard(Card c) {
 		try {
@@ -44,15 +41,11 @@ public class BlackJackDealer extends Dealer{
 	 */
 	public boolean checkForWinner(Hand hand1, Hand hand2) {
 		if(hand1.getScore() < hand2.getScore() && hand2.getScore() <= 21) {
-			System.out.println("WINNER!");
-			hand1.clearHand();
-			hand2.clearHand();
+			System.out.println("You WIN!");
 			return true;
 		}
 		else {
-			System.out.println("Dealer wins");
-			hand1.clearHand();
-			hand2.clearHand();
+			System.out.println("DEALER wins :(");
 			return false;
 		}
 		

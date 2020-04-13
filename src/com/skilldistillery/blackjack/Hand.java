@@ -1,7 +1,6 @@
 package com.skilldistillery.blackjack;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Hand {
 	private ArrayList<Card> hand;
@@ -42,11 +41,8 @@ public class Hand {
 	
 	//Empties the hand
 	public void clearHand() {
-		
-		for (Card card : hand) {
-			hand.remove(card);
-			score=0;
-		}
+		hand.clear();
+		this.score=0;
 		
 	}
 	
@@ -61,6 +57,10 @@ public class Hand {
 		return score;
 	}
 	
+	public void setScore(int score) {
+		this.score= score;
+	}
+	
 	public int getNumOfCards(){
 		return hand.size();
 	}
@@ -69,7 +69,7 @@ public class Hand {
 	public String toString() {
 		String output="";
 		for (Card card : hand) {
-			output= output+" "+ card.toString();
+			output= output+ card.toString()+" |---| ";
 		}
 		return output+ "   Score="+this.score;
 	}

@@ -9,108 +9,140 @@ public class BlackJack {
 	public static void main(String[] args) {
 		BlackJack bj= new BlackJack();
 		Table table= new Table();
-		bj.welcome();
 		bj.run(table);
 		
 	}
 	
 	public void run(Table table) {
-		Player player= table.getPlayer();
-		BlackJackDealer dealer= table.getDealer();
-		String input1="";
-		String quit="";
-		int intput=0;
-		boolean winner=false;
+		String input="";
+		welcome();
+		while(!input.equalsIgnoreCase("quit")) {
+			input=""; //problem resetting this fella
+			playRound(table);
+			System.out.println("To play another round type any key. To quit type \"quit.\" ");
+			input=scan.next();
+		}
+		System.out.println("Goodbye! Thanks for playing BlackJack!");
+		scan.close();
 		
-		//game loop
-		while(true) {
-			
-			//Start a Round
-			initiateRound(player,dealer);
-			table.updateTableDisplay();
-			
-			//Let player hit until 21
-			while((player.getHand().getScore()< 21 || intput !=2)&& winner== false) {
-				//player went over and loses
-				if(player.getHand().getScore()>21) {
-					System.out.println("BUST! You lose :(");
-					winner= true;
-					player.getHand().clearHand();
-					player.logRound();
-				}
-				//Stop if player has 21
-				else if(player.getHand().getScore() == 21) {
-					System.out.println(player.getName()+" scored 21 and must Stay!");
-					break;
-				}
-				//select Hit or Stay
-				else {
-					System.out.println("1. Hit   2. Stay");
-					System.out.print("Selection: ");
-					try {
-						intput= scan.nextInt();
-						//Choose Hit
-						if(intput==1) {
-							player.receiveACard(dealer.dealtCard());
-							table.updateTableDisplay();
-						}//Choose Stand
-						else if(intput==2) {
-							//Dealer AutoHits to 17 while the player has a score less than or equal to 21
-							while (dealer.getHand().getScore() < dealer.DESIRABLE_SCORE && player.getHand().getScore() <= 21) {
-								dealer.receiveACard(dealer.dealtCard());
-							}
-							
-							//ROUND COMPLETE- update message
-							table.updateTableDisplay();							
-							// if boolean returns a win for the player it will display a winning line and log the win.
-							if(dealer.checkForWinner(dealer.getHand(), player.getHand())) {
-								player.logWin();
-							}
-							System.out.println("Player Wins= "+player.getHandsWon()+"     Player losses="+(player.getHandsPlayed()-player.getHandsWon()));
-							System.out.println("Type \"quit\" to exit or any key to play again!");
-							quit =scan.next();
-							//if they don't type quit
-							if(quit.equalsIgnoreCase("quit")) {
-								System.out.println("Goodbye! Thanks for Playing BlackJack!!!");
-								scan.close();
-								System.exit(0);
-							}else {
-								//Start a Round
-								dealer.getHand().clearHand();
-								player.getHand().clearHand();
-								initiateRound(player,dealer);
-								table.updateTableDisplay();
+	}
+	
+	public void playRound(Table table) {
+		Player player= table.getPlayer();
+		BlackJackDealer dealer = table.getDealer();
+		int intput=0;
+		boolean endRound=false;
+		
+		player.receiveACard(dealer.dealtCard());
+		player.receiveACard(dealer.dealtCard());
+		dealer.receiveACard(dealer.dealtCard());
+		table.updateTableDisplay();
+		//Did Player get 21!?
+		if(player.getHand().getScore() == 21) {
+			System.out.println("BLACKJACK!!!");
+			player.logWin();
+			player.logRound();
+			player.getHand().clearHand();
+			dealer.getHand().clearHand();
+		}
+		//Nope Player didn't get 21 on the First Deal
+		else {
+			while(player.getHand().getScore() < 21 && endRound== false) {
+				intput=0;
+				System.out.println("1. Hit   2. Stand");
+				System.out.print("Selection: ");
+				intput= userInput1or2();
 								
-							}
-						}
-						else {
-							System.err.println("Invalid input");
-						}
-						
-							
-					}catch(Exception e) {
-						System.err.println("Invalid input");
-						intput=2;
-						input1="";
-					}//End braces of my madness
+				//PLAYER CHOOSES TO HIT
+				if(intput == 1) {
+					player.receiveACard(dealer.dealtCard());
+					table.updateTableDisplay();
+					//PLAYER HITS AND BUSTS ROUND OVER
+					if(player.getHand().getScore() > 21) {
+						System.out.println("Player Busts, DEALER Wins.");
+						endRound=true;
+						endRound(table);
+					}
+					else if(player.getHand().getScore() == 21 ) {
+						intput=2;// Float on down to the STAND position
+						System.out.println("Player has achieved 21!");
+					}
+					else {
+						continue;
+					}
+					intput=0; //problem resetting this guy
 				}
+				
+				//PLAYER STANDS
+				if(intput== 2) {
+					//Dealer AutoHits to 17 while the player has a score less than or equal to 21
+					while (dealer.getHand().getScore() < dealer.DESIRABLE_SCORE && player.getHand().getScore() <= 21) {
+						dealer.receiveACard(dealer.dealtCard());
+					}
+					//This is the end of the Round
+					endRound= true;
+					endRound(table);
+					intput=0; //problem resetting this guy
+				}
+				
+				//ROUND IS OVER
+				//Always Show result after dealer has finished
+				table.updateTableDisplay();
+				
+			}//end while First Round Actions
+		}//end else
+	}
+	
+	
+	/*
+	 * Had to break this out into a tiny method to separate and make the main method
+	 * more readable. This was my first lesson on what abstraction was, back in the day.
+	 */
+	public int userInput1or2() {
+		//input validation 1 or 2
+		int input=0;
+		
+		while(true) {
+			try {
+				input= scan.nextInt();
+			}
+			catch(Exception e) {
+				System.err.println("Must be either 1 or 2");
+				input= scan.nextInt();
 			}
 			
-			
-		}
+			if( input != 1 && input != 2) {
+				System.err.println("Must be either 1 or 2");
+				input= scan.nextInt();
+			}
+			else {
+				break;
+			}		
+		}//end input validation
+		return input;
 		
 	}
 	
 	/*
-	 * Each round starts the same
+	 * Saving more readability and repeated code.
 	 */
-	public void initiateRound(Player player, BlackJackDealer dealer) {
-		player.receiveACard(dealer.dealtCard());
-		player.receiveACard(dealer.dealtCard());
-		dealer.receiveACard(dealer.dealtCard());
-	}
-	
+	public void endRound(Table table) {
+		Player player= table.getPlayer();
+		BlackJackDealer dealer= table.getDealer();
 		
+		//Always check for winner. If player won, increment their winlog it didn't like the method in the conditional
+		boolean playerWin= dealer.checkForWinner(dealer.getHand(), player.getHand());
+		if(playerWin)
+			player.logWin();
+		//Always Log Round
+		player.logRound();
+		//Always Clear Hands and reset scores
+		player.getHand().clearHand();
+		dealer.getHand().clearHand();
+		
+	}
+
+	
 	
 	
 	public void welcome() {
