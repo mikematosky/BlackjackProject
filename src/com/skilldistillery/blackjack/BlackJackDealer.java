@@ -1,25 +1,17 @@
 package com.skilldistillery.blackjack;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class BlackJackDealer extends Dealer{
 
 	final int DESIRABLE_SCORE= 17; //Dealer stops at 17
 	private String name;
 	private Hand hand;
-	private int cardsDealt;
 	
 	//constructor for eventual addition of more decks
 	public BlackJackDealer() {
 		hand= new Hand();
 		name= "DEALER";
-		cardsDealt=0;
 	}
 	
-	public ArrayList<Card> getDealerHand() {
-		return hand.getHand();
-	}
 	
 	public Hand getHand() {
 		return hand;
@@ -29,7 +21,7 @@ public class BlackJackDealer extends Dealer{
 	public void receiveACard(Card c) {
 		try {
 			hand.addToHand(c);
-		}catch(Exception e) {
+		}catch(Exception e) {//was helpful for troubleshooting
 			System.err.println("Dealer refuses to receive Card");
 		}
 	}
@@ -46,7 +38,7 @@ public class BlackJackDealer extends Dealer{
 			return true;
 		}
 		else {
-			System.out.println("DEALER wins :(");
+			System.out.println(this.name+" wins :(");
 			return false;
 		}
 		

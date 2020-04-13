@@ -3,12 +3,11 @@ package com.skilldistillery.blackjack;
 public class Card {
   private Rank rank;
   private Suit suit;
-  private boolean isVisible;
+  //private boolean isVisible; From a time where I was trying to make a card "face down"
   
   public Card(Rank rank, Suit suit) {
     this.rank = rank;
     this.suit = suit;
-    isVisible=false;
   }
   
   public int getValue() {
@@ -22,16 +21,8 @@ public class Card {
   public Suit getSuit() {
 	  return this.suit;
   }
-  
-  public boolean getIsVisible() {
-	  return isVisible;
-  }
-  
-  public void setIsVisible(boolean b) {
-	  this.isVisible= b;
-  }
 
-  @Override
+  @Override //didn't need the hashCode
   public int hashCode() {
     final int prime = 31;
     int result = 1;
@@ -56,20 +47,11 @@ public class Card {
     return true;
   }
 
-  @Override
+  @Override //I didn't like the Stringbuilder object.
   public String toString() {
 	
-	  
-//    StringBuilder builder = new StringBuilder();
-//    builder.append(rank);
-//    builder.append(" of ");
-//    builder.append(suit);
     return rank+" of "+suit;
   }
   
-  //this method is for how the card looks on the Table. I don't want to use toString.
-  public void displayCard() {
-	  System.out.print(rank.toString()+suit.toString());
-  }
   
 }

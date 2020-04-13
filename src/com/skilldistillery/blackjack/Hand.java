@@ -30,10 +30,10 @@ public class Hand {
 					}				
 				}
 			}
-			else {
+			else {//haven't seen this error message.. possible error handling prior to being called
 				System.err.println(" DEALER: You cannot add anymore cards to this hand");
 			}
-		}catch(Exception e){
+		}catch(Exception e){//was useful in troubleshooting
 			System.err.println("Could not Add Card");
 		}
 	}
@@ -46,7 +46,8 @@ public class Hand {
 		
 	}
 	
-	//? 
+	//? I don't think I use this currently, but might eventually. It allows me to print the hand as an ArrayList with it's
+	//properties. A hand of cards is not specific to only this game. 
 	public ArrayList<Card> getHand(){
 		return hand;
 	}
@@ -57,10 +58,12 @@ public class Hand {
 		return score;
 	}
 	
+	//Not used yet, but is useful for stretch goals
 	public void setScore(int score) {
 		this.score= score;
 	}
 	
+	//Not used yet, but might be useful for stretch goals so I left it in.
 	public int getNumOfCards(){
 		return hand.size();
 	}

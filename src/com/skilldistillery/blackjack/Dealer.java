@@ -1,11 +1,11 @@
 package com.skilldistillery.blackjack;
 
-import java.util.ArrayList;
 
 public abstract class Dealer {
 	
-	//protected int deckCapacity; //SomeDealers may hold more than one deck. We might...
+	//protected int deckCapacity; //SomeDealers may hold more than one deck of standard cards. We might... One day
 	protected Deck deck= new Deck(); //Every dealer has a deck(for now) or multiple decks
+	
 	//Not all dealers get a Hand to play
 	
 	
@@ -16,12 +16,10 @@ public abstract class Dealer {
 	public Deck getDeck(){
 		return deck;
 	}
-
-//	public int getDeckCapacity() {
-//		return deckCapacity;
-//	}
 	
-	
+	/*
+	 * Apparently I did add a shuffle and populating a new deck feature.
+	 */
 	public Card dealtCard() { //Every dealer deals a card
 		try {
 			if(deck.checkDeckSize()== 0) {

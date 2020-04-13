@@ -26,14 +26,7 @@ public class Table {
 		System.out.print("What is your name? ");
 		return scan.nextLine();
 	}
-	
-	public void initiateRound(Table table) {
-		human.receiveACard(dealer.dealtCard());
-		human.receiveACard(dealer.dealtCard());
 		
-		dealer.receiveACard(dealer.dealtCard());
-	}
-	
 	public BlackJackDealer getDealer() {
 		return dealer;
 	}
@@ -42,7 +35,9 @@ public class Table {
 		return human;
 	}
 		
-	
+	/*
+	 * This is the UI... Sorry
+	 */
 	public void updateTableDisplay() {
 		System.out.println("==========================================================");
 		System.out.println("||");

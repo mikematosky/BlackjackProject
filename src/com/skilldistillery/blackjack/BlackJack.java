@@ -89,13 +89,13 @@ public class BlackJack {
 					endRound= true;
 					endRound(table);
 					intput=0; //problem resetting this guy
-				}
+				}//end if
 				
 				//ROUND IS OVER
 				
-			}//end while First Round Actions
+			}//end while
 		}//end else
-	}
+	}//end Round
 	
 	
 	/*
@@ -137,12 +137,12 @@ public class BlackJack {
 		BlackJackDealer dealer= table.getDealer();
 		
 		//Always check for winner. If player won, increment their winlog it didn't like the method in the conditional
-		boolean playerWin= dealer.checkForWinner(dealer.getHand(), player.getHand());
+		boolean playerWin= dealer.checkForWinner(dealer.getHand(), player.getHand()); //Java didn't like this in the conditional
 		if(playerWin)
 			player.logWin();
 		//Always Log Round
 		player.logRound();
-		//Always Clear Hands and reset scores
+		//Always Clear Hands and reset scores(in the clearHand() method)
 		player.getHand().clearHand();
 		dealer.getHand().clearHand();
 		
@@ -150,14 +150,14 @@ public class BlackJack {
 
 	
 	
-	
+	//SIMPLE WELCOME MESSAGE
 	public void welcome() {
 		System.out.println();
 		System.out.println("==========================================================");
 		System.out.println("||");
 		System.out.println("|| ");
 		System.out.println("||");
-		System.out.println("||  WELCOME TO BLACKJACK!!!!           "); 
+		System.out.println("||              WELCOME TO BLACKJACK!!!!           "); 
 		System.out.println("||");
 		System.out.println("|| ");
 		System.out.println("||");
