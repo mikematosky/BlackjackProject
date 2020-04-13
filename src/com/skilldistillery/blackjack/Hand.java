@@ -24,7 +24,7 @@ public class Hand {
 				//Soft Aces
 				while(score > 21) {
 					for (Card card : hand) {
-						if(c.getRank() == Rank.ACE) {
+						if(card.getRank() == Rank.ACE) {
 							score = score- 10;
 							break;
 						}
@@ -63,6 +63,15 @@ public class Hand {
 	
 	public int getNumOfCards(){
 		return hand.size();
+	}
+	
+	@Override
+	public String toString() {
+		String output="";
+		for (Card card : hand) {
+			output= output+" "+ card.toString();
+		}
+		return output+ "   Score="+this.score;
 	}
 	
 

@@ -58,11 +58,13 @@ public class Card {
 
   @Override
   public String toString() {
-    StringBuilder builder = new StringBuilder();
-    builder.append(rank);
-    builder.append(" of ");
-    builder.append(suit);
-    return builder.toString();
+	
+	  
+//    StringBuilder builder = new StringBuilder();
+//    builder.append(rank);
+//    builder.append(" of ");
+//    builder.append(suit);
+    return rank+" of "+suit;
   }
   
   //this method is for how the card looks on the Table. I don't want to use toString.

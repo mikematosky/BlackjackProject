@@ -30,19 +30,23 @@ public class Player {
 		return handsWon;
 	}
 
-	public void setHandsWon(int handsWon) {
-		this.handsWon = handsWon;
-	}
-
 	public int getHandsPlayed() {
 		return handsPlayed;
 	}
-
-	public void setHandsPlayed(int handsPlayed) {
-		this.handsPlayed = handsPlayed;
+	
+	public void logRound() {
+		this.handsPlayed++;
+	}
+	
+	public void logWin() {
+		this.handsWon++;
 	}
 
-	public ArrayList<Card> getPlayerHand() {
+	public Hand getHand() {
+		return playerHand;
+	}
+	
+	public ArrayList<Card> getHandList(){
 		return playerHand.getHand();
 	}
 	
@@ -58,9 +62,7 @@ public class Player {
 		return playerHand.getScore();
 	}
 
-	public void setPlayerHand(Hand playerHand) {
-		this.playerHand = playerHand;
-	}
+
 	
 	
 }
