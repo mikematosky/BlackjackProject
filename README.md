@@ -9,7 +9,7 @@ The class files mimic the real life Blackjack experience. The game opens a **TAB
 **BLACKJACKDEALER** (which inherits properties from the abstract class **DEALER**) and a human **PLAYER**. Each of these components hold a **HAND** which consists of **CARDS** from a **DECK**. The actual BlackJack file holds the main which holds much of the game's logic.  
 
 ## File List
-|---|
+
 1. **BlackJack**- *Holds the main method. Creates a table and follows game logic.*
 2. **BlackJackDealer** *Is a type of Dealer and has unique attributes associated with Blackjack.*
 3. **BlackJackTest**- *A program to hold tests before the game class was built. Tested the class objects before creating the game class.*
@@ -28,7 +28,7 @@ score is tabulated.*
 this project there is only one player, played by the human with inputted directions.*
 9. **Table**- *The table is where the display happens and in the real world is where the dealer
 and the player play the game. The table actually holds the player and the dealer.*
-|---|
+
 
 
 ## Notes
